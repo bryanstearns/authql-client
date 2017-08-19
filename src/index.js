@@ -1,26 +1,21 @@
-// Demo component
-// this is only example component
+import ourApolloClient from './graphql/apolloClient'
+export const apolloClient = ourApolloClient
 
-import React from 'react';
+import ourLoginPanel from './components/LoginPanel'
+export const LoginPanel = ourLoginPanel
 
-class MyComponent extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+import ourLogin from './containers/Login'
+export const Login = ourLogin
 
-    componentDidMount() {
+import ourLogout from './containers/Logout'
+export const Logout = ourLogout
 
-    }
+import { withAuth as ourWithAuth } from './graphql/withAuth'
+export const withAuth = ourWithAuth
 
-    render() {
-        return (
-            <div className="my-component">
-                <i className="icon-test">One</i><br></br>
-                <i className="icon-test">Two</i><br></br>
-                <i className="icon-test">Three</i>
-            </div>
-        )
-    }
-}
-
-export default MyComponent;
+import { authReducer as ourAuthReducer,
+         Types as ourAuthTypes,
+         Creators as ourAuthCreators } from './reducers/authReducer'
+export const authReducer = ourAuthReducer
+export const AuthTypes = ourAuthTypes
+export const AuthCreators = ourAuthCreators

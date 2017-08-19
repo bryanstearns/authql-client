@@ -1,11 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import MyComponent from '../index';
+import {
+  apolloClient,
+  LoginPanel,
+  Login,
+  Logout,
+  withAuth,
+  authReducer,
+  AuthTypes,
+  AuthCreators
+} from '../index'
 
-describe('<index />', () => {
-
-    it('renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<MyComponent />, div);
-    });
-});
+test('all our exports are good', () => {
+  expect(apolloClient).toBeDefined()
+  expect(LoginPanel).toBeDefined()
+  expect(Login).toBeDefined()
+  expect(Logout).toBeDefined()
+  expect(withAuth).toBeDefined()
+  expect(authReducer).toBeDefined()
+  expect(AuthTypes).toBeDefined()
+  expect(AuthCreators).toBeDefined()
+})
