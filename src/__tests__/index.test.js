@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MyComponent from 'index';
+import MyComponent from '../index';
 
 describe('<index />', () => {
 

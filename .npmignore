@@ -1,5 +1,2 @@
 node_modules
-examples/dist/bundle.js
 coverage
-
-.idea
