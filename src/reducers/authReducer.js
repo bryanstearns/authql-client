@@ -1,10 +1,11 @@
 import { createReducer, createActions } from 'reduxsauce'
 
 export const emailKey = 'authEmail',
+             viewerKey = 'authViewer',
              tokenKey = 'authToken'
 
 const { Types, Creators } = createActions({
-  login: ['email', 'token'],
+  login: ['email', 'viewer', 'token'],
   logout: []
 })
 
@@ -16,20 +17,23 @@ const lsGet = (key) => (
 
 const initialState = {
   email: lsGet(emailKey),
+  viewer: lsGet(viewerKey),
   token: lsGet(tokenKey)
 }
 
 const login = (state = initialState, action) => {
-  const { email, token } = action
+  const { email, viewer, token } = action
   localStorage.setItem(emailKey, email);
+  localStorage.setItem(viewerKey, viewer);
   localStorage.setItem(tokenKey, token);
-  return {...state, token, email}
+  return {...state, token, viewer, email}
 }
 
 const logout = (state = initialState, action) => {
   localStorage.removeItem(emailKey);
+  localStorage.removeItem(viewerKey);
   localStorage.removeItem(tokenKey);
-  return {...state, token: undefined, email: undefined}
+  return {...state, token: undefined, viewer: undefined, email: undefined}
 }
 
 const authReducer = createReducer(initialState, {

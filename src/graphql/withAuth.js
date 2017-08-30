@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import PropTypes from 'prop-types'
 
@@ -15,12 +16,20 @@ const defaultLoadingContent = () => (
   <span className="loading">(loading...)</span>
 )
 
+const wrapperMapStateToProps = (state, ownProps) => {
+  return {
+    error: ownProps.data.error,
+    loading: ownProps.data.loading
+  }
+}
+
 export const withAuth = (params={}) => {
   const errorHandler = params.onError || defaultErrorContent
   const loadingHandler = params.onLoading || defaultLoadingContent
   const unauthorizedPath = params.unauthorizedPath || "/login"
   return (WrappedComponent) => {
-    const wrapper = ({data: {error, loading, ...otherDataProps}, ...otherProps}) => {
+    const Wrapper = ({data, error, loading, ...otherProps}) => {
+      const {error: _error, loading: _loading, ...otherDataProps} = data
       if (error) {
         if (isUnauthorizedError(error)) {
           return <Redirect push to={unauthorizedPath} />
@@ -33,14 +42,14 @@ export const withAuth = (params={}) => {
       }
       return <WrappedComponent {...otherProps} {...otherDataProps}/>
     }
-
-    wrapper.propTypes = {
+    Wrapper.propTypes = {
+      loading: PropTypes.bool.isRequired,
+      error: PropTypes.object,
       data: PropTypes.shape({
         loading: PropTypes.bool.isRequired,
         error: PropTypes.object
       }).isRequired
     }
-
-    return wrapper
+    return connect(wrapperMapStateToProps)(Wrapper)
   }
 }

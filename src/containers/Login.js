@@ -11,6 +11,7 @@ const loginMutation = gql`
     login(email: $email, password: $password) {
       user {
         email
+        id
       }
       token
     }
@@ -25,9 +26,9 @@ export class Login extends Component {
   performLogin(variables) {
     const {client, onLogin} = this.props
     return this.props.mutate({variables})
-           .then(({data: {login: {user: {email}, token}}}) => {
+           .then(({data: {login: {user: {email, id}, token}}}) => {
              client.resetStore() // discard un-authed version of data
-             onLogin(email, token) // go record the token
+             onLogin(email, id, token) // go record the token
              this.props.history.goBack() // redirect back to what invoked us
              return "" // no error
            })
@@ -51,7 +52,7 @@ Login.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLogin: (email, token) => dispatch(Creators.login(email, token))
+    onLogin: (email, id, token) => dispatch(Creators.login(email, id, token))
   }
 }
 

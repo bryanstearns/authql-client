@@ -18,8 +18,8 @@ export class Logout extends Component {
       return this.props.mutate({variables: {token: this.props.token}})
              .catch((error) => undefined) // eat errors
              .then(() => {
-               this.props.client.resetStore() // discard authed version of data
                this.props.onLogout() // go discard the token
+               this.props.client.resetStore() // discard authed version of data
                this.props.history.goBack() // redirect back to what invoked us
                return "" // no error
              })
