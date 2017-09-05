@@ -1,15 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { render, mount } from 'enzyme'
 import { MemoryRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { withAuth } from '../../graphql/withAuth'
 
 const Child = ({stuff}) => (<span>Dummy</span>)
-Child.propTypes = {
-  stuff: PropTypes.array.isRequired,
-  other: PropTypes.bool.isRequired
-}
 
 const mockStore = (state={}) => {
   return {

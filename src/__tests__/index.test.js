@@ -4,6 +4,7 @@ import {
   Login,
   Logout,
   withAuth,
+  graphqlWithAuth,
   authReducer,
   AuthTypes,
   AuthCreators
@@ -15,6 +16,7 @@ test('all our exports are good', () => {
   expect(Login).toBeDefined()
   expect(Logout).toBeDefined()
   expect(withAuth).toBeDefined()
+  expect(graphqlWithAuth).toBeDefined()
   expect(authReducer).toBeDefined()
   expect(AuthTypes).toBeDefined()
   expect(AuthCreators).toBeDefined()

@@ -13,6 +13,9 @@ export const Logout = ourLogout
 import { withAuth as ourWithAuth } from './graphql/withAuth'
 export const withAuth = ourWithAuth
 
+import { graphqlWithAuth as ourGraphqlWithAuth } from './graphql/graphqlWithAuth'
+export const graphqlWithAuth = ourGraphqlWithAuth
+
 import { authReducer as ourAuthReducer,
          Types as ourAuthTypes,
          Creators as ourAuthCreators } from './reducers/authReducer'
